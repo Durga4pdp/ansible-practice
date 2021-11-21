@@ -1,0 +1,15 @@
+---
+- hosts: serverslist
+  become: yes
+  tasks:
+  - name: install webserver
+    apt:
+      name: "{{webpackubuntu}}"
+      state: absent
+    when: ansible_os_family=="Debian"
+
+  - name: install java
+    yum:
+      name: "{{myjavapackforredhat}}"
+      state: present
+    when: ansible_os_family=="RedHat"  
