@@ -1,0 +1,31 @@
+--- 
+- hosts: all
+  become: yes
+  tasks:
+  - name: install webserver
+    apt:
+     name: apache2
+     state: present
+    when: ansible_os_family=="Debian"  
+
+  - name: install webservice 
+    service:
+     name: apache2
+     state: started
+    when: ansible_os_family=="Debian" 
+    
+  - name: install webserver
+    yum:
+     name: httpd
+     state: present
+    when: ansible_os_family=="RedHat"  
+
+  - name: install webservice 
+    service:
+     name: httpd
+     state: started
+    when: ansible_os_family=="RedHat"
+    
+
+
+
